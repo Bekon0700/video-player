@@ -31,15 +31,22 @@
                 </div>
                 <div class="bottom-controller">
                     <ion-icon name="play-outline" id="play" class="icon"></ion-icon>
+                    <div class="time-container">
+                        <p id="current-time"></p>
+                        <p>/</p>
+                        <p id="total-time"></p>
+                    </div>
                     <div class="seek-btns">
                         <ion-icon name="play-back-outline" id="seek-backward" class="icon-md"></ion-icon>
                         <ion-icon name="play-forward-outline" id="seek-forward" class="icon-md"></ion-icon>
                     </div>
                     <div class="volume-container">
-                        <ion-icon name="volume-high-outline"></ion-icon>
+                        <ion-icon name="volume-high-outline" id="volume" class="icon-md"></ion-icon>
+                        <input type="range" max="1" min="0" step="any" id="volume-input" class="volume-input">
                     </div>
-                    <!-- <button class="btn" id="play"><ion-icon name="heart"></ion-icon></button>
-                    <button class="btn" id="seek">Seek 10sec forward</button> -->
+                    <div class="pip-container">
+                        <ion-icon name="pie-chart-outline" id="pip" class="icon-md"></ion-icon>
+                    </div>
                 </div>
             </div>
         </div>

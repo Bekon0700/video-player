@@ -51,14 +51,14 @@ body {
   bottom: 1%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  background: linear-gradient(to top, rgb(0, 0, 0), transparent);
   border-radius: 0 0 12px 12px;
 }
 
 .timeline-container {
   position: relative;
   width: 100%;
-  height: 7px;
+  height: 13px;
 }
 .timeline-container .timeline {
   height: 3px;
@@ -93,6 +93,25 @@ body {
   gap: 15px;
 }
 
+.time-container {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.volume-input {
+  width: 50%;
+}
+
 .seek-btns {
   display: flex;
   align-items: center;
@@ -109,4 +128,11 @@ body {
   color: rgb(233, 215, 215);
   font-size: 18px;
   cursor: pointer;
+}
+
+.pip-container {
+  display: flex;
+  flex: 2;
+  align-self: center;
+  justify-content: flex-end;
 }/*# sourceMappingURL=main.css.map */

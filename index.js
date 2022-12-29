@@ -1,3 +1,17 @@
+const timeFormater = (time) => {
+    let sec = Math.floor(time % 60)
+    let min = Math.floor((time / 60) % 60)
+    let hour = Math.floor((time / 3600))
+
+    sec = sec < 10 ? `0${sec}` : sec
+    min = min < 10 ? `0${min}` : min
+    hour = hour < 10 ? `0${hour}` : hour
+
+    if(hour == 0) return `${min}:${sec}`
+
+    return `${hour}:${min}:${sec}`
+}
+
 const createThumbnail = (video) => {
     console.log(typeof video)
     video.currentTime = 15;
@@ -65,17 +79,18 @@ $('#play').on('click', function() {
 $('#seek-backward').on('click', function() {
     const video = $('#video-player')[0]
     video.currentTime -= 10
-    const min = parseInt(video.duration / 60)
-    const sec = parseInt(video.duration % 60)
-    console.log(`${min}:${sec}`)
 })
 $('#seek-forward').on('click', function() {
     const video = $('#video-player')[0]
     video.currentTime += 10
-    const min = parseInt(video.duration / 60)
-    const sec = parseInt(video.duration % 60)
-    console.log(`${min}:${sec}`)
 })
+
+$('#video-player').on('loadeddata', function() {
+    const video = $('#video-player')[0]
+    const duration = video.duration
+    $('#total-time').text(timeFormater(duration))
+})
+
 
 $('#video-player').on('timeupdate', function() {
     const video = $('#video-player')[0]
@@ -90,26 +105,60 @@ $('#video-player').on('timeupdate', function() {
     if(currentTime == duration) {
         $('#play').attr('name', 'play-outline')
     }
+    $('#current-time').text(timeFormater(currentTime))
 })
 
 $('.timeline-container').on('click', function(e) {
-    console.log(e.target.id)
-    if(e.target.id != 'progress-indicator'){
-        const totalWidth = +$('.timeline-container').css('width').split('p')[0]
-        const currentPointerPos = e.offsetX
-        // $('#progress').css('width', `${currentPointerPos}px`)
-        const video = $('#video-player')[0]
-        const duration = video.duration
-        video.currentTime = (duration / totalWidth) * currentPointerPos
-    } 
-    if(e.target.id == 'progress-indicator'){
-        console.log(e)
-        $('#progress-indicator').on('mouseup', function(evt) {
-            console.log(evt)
-        })
-    }
-    // console.log(duration, totalWidth, currentPointerPos)
-    // console.log((duration / totalWidth) * currentPointerPos)
+    const totalWidth = +$('.timeline-container').css('width').split('p')[0]
+    const currentPointerPos = e.offsetX
+    $('#progress').css('width', `${currentPointerPos}px`)
+    const video = $('#video-player')[0]
+    const duration = video.duration
+    video.currentTime = (duration / totalWidth) * currentPointerPos
 })
 
+function dragable(e) {
+    const marginLeft = ($(document).width() - $('.container').width()) / 2
+    // console.log($('.container').css('margin'))
+    const totalWidth = +$('.timeline-container').css('width').split('p')[0]
+    const currentPointerPos = e.clientX - marginLeft
+    $('#progress').css('width', `${currentPointerPos}px`)
+    const video = $('#video-player')[0]
+    const duration = video.duration
+    video.currentTime = (duration / totalWidth) * currentPointerPos
+}
 
+$('.timeline-container').on('mousedown', function() {
+    $('.timeline-container').on('mousemove', dragable)
+})
+$(document).on('mouseup', function() {
+    $('.timeline-container').off('mousemove', dragable)
+})
+
+$('#volume').on('click', function() {
+    const video = $('#video-player')[0]
+    const volume = $(this).attr('name')
+    if(volume == 'volume-mute-outline'){
+        $(this).attr('name', 'volume-high-outline')
+        video.volume = 1
+    } else {
+        $(this).attr('name', 'volume-mute-outline')
+        video.volume = 0
+    }
+})
+
+$('#pip').on('click', function() {
+    const video = $('#video-player')[0]
+    video.requestPictureInPicture()
+})
+
+$('#volume-input').on('input', function(e) {
+    const volumeValue =  e.target.value
+    const video = $('#video-player')[0]
+    video.volume = volumeValue
+    if(volumeValue == 0){
+        $('#volume').attr('name', 'volume-mute-outline')
+    } else {
+        $('#volume').attr('name', 'volume-high-outline')
+    }
+})
