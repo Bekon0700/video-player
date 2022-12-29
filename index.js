@@ -92,6 +92,24 @@ $('#video-player').on('timeupdate', function() {
     }
 })
 
-$('.timeline').on('click', function() {
-    console.log(this)
+$('.timeline-container').on('click', function(e) {
+    console.log(e.target.id)
+    if(e.target.id != 'progress-indicator'){
+        const totalWidth = +$('.timeline-container').css('width').split('p')[0]
+        const currentPointerPos = e.offsetX
+        // $('#progress').css('width', `${currentPointerPos}px`)
+        const video = $('#video-player')[0]
+        const duration = video.duration
+        video.currentTime = (duration / totalWidth) * currentPointerPos
+    } 
+    if(e.target.id == 'progress-indicator'){
+        console.log(e)
+        $('#progress-indicator').on('mouseup', function(evt) {
+            console.log(evt)
+        })
+    }
+    // console.log(duration, totalWidth, currentPointerPos)
+    // console.log((duration / totalWidth) * currentPointerPos)
 })
+
+
