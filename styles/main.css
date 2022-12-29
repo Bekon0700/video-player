@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.file-uploader {
+  display: flex;
+  align-items: center;
+}
+
+.video-input {
+  font-size: 15px;
+}
+
+.submit-btn {
+  padding: 7px 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#video-player {
+  width: 100%;
+  height: 500px;
+  outline: none;
+  border-radius: 15px;
+  background-color: #000;
+}
+
+.video-container {
+  position: relative;
+}
+
+.control-container {
+  position: absolute;
+  width: 100%;
+  bottom: 1%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  border-radius: 0 0 12px 12px;
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  height: 7px;
+}
+.timeline-container .timeline {
+  height: 3px;
+  background: rgb(137, 131, 131);
+}
+.timeline-container #progress {
+  position: absolute;
+  background-color: red;
+  height: 3px;
+  width: 0;
+  top: 0;
+}
+.timeline-container #progress-indicator {
+  height: 16px;
+  width: 16px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+}
+
+.bottom-controller {
+  width: 95%;
+  margin: 6px auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: flex;
+  gap: 15px;
+}
+
+.seek-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  color: rgb(233, 215, 215);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.icon-md {
+  color: rgb(233, 215, 215);
+  font-size: 18px;
+  cursor: pointer;
+}/*# sourceMappingURL=main.css.map */

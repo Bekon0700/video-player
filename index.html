@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <title>Video Player</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="file-uploader">
+            <input type="file" class="video-input">
+        </div>
+        <div class="video-container">
+            <video id="video-player">
+                <source type="video/mp4" id="video-src">
+            </video>
+            <div class="control-container">
+                <div class="timeline-container">
+                    <div class="timeline"></div>
+                    <div id="progress">
+                        <span id="progress-indicator"></span>
+                    </div>
+                </div>
+                <div class="bottom-controller">
+                    <ion-icon name="play-outline" id="play" class="icon"></ion-icon>
+                    <div class="seek-btns">
+                        <ion-icon name="play-back-outline" id="seek-backward" class="icon-md"></ion-icon>
+                        <ion-icon name="play-forward-outline" id="seek-forward" class="icon-md"></ion-icon>
+                    </div>
+                    <div class="volume-container">
+                        <ion-icon name="volume-high-outline"></ion-icon>
+                    </div>
+                    <!-- <button class="btn" id="play"><ion-icon name="heart"></ion-icon></button>
+                    <button class="btn" id="seek">Seek 10sec forward</button> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
